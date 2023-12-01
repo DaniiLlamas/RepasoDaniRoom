@@ -17,6 +17,8 @@ interface InterfaceDaoPersonaje {
     @Query("SELECT * FROM personaje WHERE idRegion LIKE :idRegion")
     fun getPersonajesRegion(idRegion:Int):MutableList<Personaje>
 
+    @Query("SELECT * FROM personaje WHERE nivel >= :lvlMin AND nivel <= :lvlMax")
+    fun getPersonajesPorNivel(lvlMin : Int, lvlMax : Int):MutableList<Personaje>
 
     @Update
     fun updatePersonaje(pj:Personaje)

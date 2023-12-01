@@ -14,12 +14,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var daoPersonaje: InterfaceDaoPersonaje
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val conexion = BDRoom.BaseDatos.getBaseDatos(this)
         daoRegion = conexion.daoRegion()
         daoPersonaje = conexion.daoPersonaje()
+
+
         /*  var reg1 = Region("Inazuma", 9982.02, "Nación del rayo")
         var reg2 = Region("Liyue", 9982.02, "Nación de la tierra")
         daoRegion.addRegion(reg1)
@@ -88,6 +91,14 @@ INSERT MASIVO 2
             Log.d("PersonajeMonds", "La region de ${daoRegion.getRegionById(pm.idRegion).nombre} cuenta con: ${pm.nombrePersonaje}")
         }
 
+        var personajeACambiar = daoPersonaje.getPersonajeNombre("Ayaka")
+        personajeACambiar.nombrePersonaje = "Alejandro"
+        daoPersonaje.updatePersonaje(personajeACambiar)
+
+        var listaPersonajesLvl = daoPersonaje.getPersonajesPorNivel(80,90)
+        for (lp in listaPersonajesLvl){
+            Log.d("PersonajesLvl","${lp.nombrePersonaje},${lp.nivel}")
+        }
 
 
 
